@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Visual Novel Kit — Skill Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fafafa; font-family: system-ui, sans-serif; padding: 40px; }
+
+  h1 { font-size: 28px; color: #1e1e1e; margin-bottom: 4px; }
+  .subtitle { font-size: 15px; color: #757575; margin-bottom: 40px; }
+
+  .map { display: flex; gap: 24px; align-items: flex-start; }
+
+  .zone {
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 260px;
+    position: relative;
+  }
+
+  .zone-create { background: rgba(74,158,237,0.08); border: 1px solid rgba(74,158,237,0.2); }
+  .zone-style { background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2); }
+  .zone-build { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+
+  .zone-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .zone-create .zone-label { color: #2563eb; }
+  .zone-style .zone-label { color: #6d28d9; }
+  .zone-build .zone-label { color: #15803d; }
+
+  .skill {
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .skill-create { background: #a5d8ff; border: 1px solid #4a9eed; }
+  .skill-style { background: #d0bfff; border: 1px solid #8b5cf6; }
+  .skill-build { background: #b2f2bb; border: 1px solid #22c55e; }
+
+  .skill-name {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #1e1e1e;
+    margin-bottom: 4px;
+  }
+
+  .skill-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .new-badge {
+    display: inline-block;
+    background: #ffc9c9;
+    border: 1px solid #ef4444;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #ef4444;
+    padding: 1px 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .arrow-down {
+    text-align: center;
+    color: #aaa;
+    font-size: 20px;
+    margin: 4px 0;
+  }
+
+  .arrow-right {
+    display: flex;
+    align-items: center;
+    color: #aaa;
+    font-size: 28px;
+    padding: 0 4px;
+    margin-top: 40px;
+  }
+
+  .refs-box {
+    margin-top: 24px;
+    padding: 14px 16px;
+    background: #fff3bf;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+  }
+
+  .refs-box .skill-name { color: #92400e; }
+  .refs-box .skill-desc { color: #78716c; }
+
+  .template-box {
+    margin-top: 32px;
+    padding: 16px 20px;
+    background: #c3fae8;
+    border: 1px solid #06b6d4;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .template-box .skill-name { font-size: 17px; color: #0e7490; }
+  .template-box .skill-desc { color: #5f7c82; }
+
+  .dashed-line {
+    border-top: 2px dashed #f59e0b;
+    margin: 8px 0;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+
+<h1>Visual Novel Kit</h1>
+<p class="subtitle">Skills & workflow for interactive fiction with Claude Code</p>
+
+<div class="map">
+  <!-- CREATE -->
+  <div class="zone zone-create">
+    <div class="zone-label">1. Create</div>
+
+    <div class="skill skill-create">
+      <div class="skill-name">/story-architect <span class="new-badge">NEW</span></div>
+      <div class="skill-desc">Brainstorm premise, arcs, axes, characters. Outputs arc.md with scene checklist.</div>
+    </div>
+
+    <div class="arrow-down">↓</div>
+
+    <div class="skill skill-create">
+      <div class="skill-name">/world-builder <span class="new-badge">NEW</span></div>
+      <div class="skill-desc">Setting, technology, mood, tone, rules. Outputs world.md bible.</div>
+    </div>
+  </div>
+
+  <div class="arrow-right">→</div>
+
+  <!-- STYLE -->
+  <div class="zone zone-style">
+    <div class="zone-label">2. Style</div>
+
+    <div class="skill skill-style">
+      <div class="skill-name">/style-discover <span class="new-badge">NEW</span></div>
+      <div class="skill-desc">Generate test images in different aesthetics. Pick one, build style lock + reference suite.</div>
+    </div>
+
+    <div class="arrow-down">↓</div>
+
+    <div class="skill skill-style">
+      <div class="skill-name">/ui-designer <span class="new-badge">NEW</span></div>
+      <div class="skill-desc">Design sidebar, buttons (4 states), fonts, results screen. Output HTML mockup.</div>
+    </div>
+
+    <div class="arrow-down">↓</div>
+
+    <div class="skill skill-style">
+      <div class="skill-name">/background-generator</div>
+      <div class="skill-desc">Style lock prefix/suffix + auto-attached refs. Generates scene backgrounds.</div>
+    </div>
+
+    <div class="refs-box">
+      <div class="skill-name">Style References</div>
+      <div class="skill-desc">4 mood refs (day exterior, interior, outdoor hope, night). Auto-attached to every generation.</div>
+    </div>
+  </div>
+
+  <div class="arrow-right">→</div>
+
+  <!-- BUILD -->
+  <div class="zone zone-build">
+    <div class="zone-label">3. Build</div>
+
+    <div class="skill skill-build">
+      <div class="skill-name">/scene-author</div>
+      <div class="skill-desc">Write Ink dialogue + generate background per scene. Iterative with stop-and-review at each step.</div>
+    </div>
+
+    <div class="arrow-down">↓</div>
+
+    <div class="skill skill-build">
+      <div class="skill-name">/run-all</div>
+      <div class="skill-desc">Execute remaining checklist tasks sequentially with fresh context per task.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Template -->
+<div class="template-box" style="max-width: 860px; margin-top: 32px;">
+  <div class="skill-name">visual-novel-template (GitHub)</div>
+  <div class="skill-desc">Ink + React + Vite + Tailwind + all skills pre-installed. Clone → run /story-architect → go.</div>
+</div>
+
+</body>
+</html>

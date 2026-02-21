@@ -32,35 +32,27 @@ Check your scene checklist for the next unchecked scene.
 4. **DEV_NOTES.md** — Ink patterns and gotchas
 5. **Reference README** (`notes/references/README.md`) — Available style & character refs
 
-### 3. Write Ink (Collaborative Loop)
+### 3. Write Ink (File-First Collaborative Loop)
 
 #### 3a: Present Context
 - Show the arc scene description
-- Summarize: vibe, axes, emotional core
+- Summarize: vibe, emotional core
 - Ask for any specific beats in mind
 
 **STOP. Wait for input before drafting.**
 
-#### 3b: Draft Intro
-- Opening text only (2-4 paragraphs)
-- Set scene, establish mood
-- No choices yet
+#### 3b: Write First Draft to File
+- Write directly to `src/story/episode1.ink` — not in chat
+- Include: intro text, choices, response text, end knot with `+ [...]`
+- Open the file in Cursor (`code <path>`) so user can see it
 
-**STOP. Get feedback. Revise until approved.**
+**STOP. User reads in editor. Gets feedback.**
 
-#### 3c: Draft Choices
-- 3-4 choice texts only
-- Note which axis each moves
-- No responses yet
-
-**STOP. Discuss framing. Revise until approved.**
-
-#### 3d: Draft Full Scene
-- Add response text
-- Add axis changes
-- Add end knot with `+ [...]` pattern
-
-**STOP. Line-by-line feedback. Revise until approved.**
+#### 3c: Revise in File
+- Use **Edit tool** for surgical changes (user sees old → new diffs)
+- User can also edit the file directly in Cursor and describe changes
+- Repeat until approved
+- No rewriting whole blocks in chat — all edits happen on the real file
 
 ### 4. Generate Background
 
@@ -117,7 +109,33 @@ Update your scene checklist.
 
 ---
 
-## Notes
+## Speed Mode (Hackathon)
+
+When time is tight, use this instead of the normal workflow:
+
+### Image Blitz
+
+1. Read `notes/arc.md` background descriptions + `notes/references/README.md`
+2. Craft all prompts at once (1 per scene, no variations)
+3. Generate in parallel batches of 3-4 using background agents
+4. Quick review — regenerate only disasters
+5. All images go directly to `public/backgrounds/{scene_name}.jpg`
+
+### Ship It
+
+1. `pnpm run ink:compile` — verify no errors
+2. `pnpm dev` — test in browser via Claude-in-Chrome
+3. Git commit, push, deploy
+
+### Rules in Speed Mode
+- **1 image per scene** (not 3)
+- **No STOP gates** — keep moving unless something's broken
+- **Always attach style refs** — still non-negotiable
+- **Quick Look each image** to sanity check before moving on
+
+---
+
+## Notes (Normal Mode)
 
 - **STOP means STOP.** Don't proceed until explicitly approved.
 - **Keep it tight.** 2-3 lines per beat max.

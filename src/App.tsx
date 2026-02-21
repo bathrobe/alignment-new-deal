@@ -3,9 +3,9 @@ import { useInkStory } from "./hooks/useInkStory";
 import { useAudio, type MusicTrack } from "./hooks/useAudio";
 import GameView from "./components/GameView";
 import TitleScreen from "./components/TitleScreen";
-import ResultsScreen from "./components/ResultsScreen";
 import { saveGame, loadGame, hasSavedGame, clearSave } from "./lib/gameSave";
 import storyJson from "./story/episode1.json";
+
 
 // Map mood tags to chapter labels - customize for your story
 const PHASE_LABELS: Record<string, string> = {
@@ -121,14 +121,6 @@ function App() {
     );
   }
 
-  // Results screen (when story emits "show: results" tag)
-  if (tags.show === "results") {
-    clearSave();
-    // TODO: Extract Ink variables to display in results
-    // Example: const score = variables.getVariable("example_score");
-    return <ResultsScreen variables={{}} onReset={handleReturnToMenu} />;
-  }
-
   // Game view
   return (
     <GameView
@@ -143,6 +135,7 @@ function App() {
       chapterLabel={tags.mood ? PHASE_LABELS[tags.mood] : undefined}
       isMuted={isMuted}
       onToggleMute={toggleMute}
+      onReturnToMenu={handleReturnToMenu}
     />
   );
 }

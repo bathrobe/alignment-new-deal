@@ -15,7 +15,7 @@
 
 ## Story
 
-- [ ] Finalize scene list in `notes/arc.md`
+- [x] Finalize scene list in `notes/arc.md`
 - [ ] Write scenes (use `/scene-author`)
 - [ ] Generate backgrounds for each scene
 - [ ] Compile and verify full playthrough

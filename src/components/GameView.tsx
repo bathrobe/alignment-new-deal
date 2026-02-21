@@ -15,6 +15,7 @@ interface GameViewProps {
   chapterLabel?: string;
   isMuted: boolean;
   onToggleMute: () => void;
+  onReturnToMenu?: () => void;
 }
 
 function GameView({
@@ -29,6 +30,7 @@ function GameView({
   chapterLabel = "Episode 1",
   isMuted,
   onToggleMute,
+  onReturnToMenu,
 }: GameViewProps) {
   const showClickToContinue = hasPendingContent && choices.length === 0;
 
@@ -73,16 +75,39 @@ function GameView({
         )}
 
         {isEnded && choices.length === 0 && !hasPendingContent && (
-          <p
-            className="mt-4 italic"
-            style={{
-              fontFamily: "'Bitter', Georgia, serif",
-              color: PALETTE.slate,
-              opacity: 0.6,
-            }}
-          >
-            The End.
-          </p>
+          <div className="mt-6 space-y-4">
+            <p
+              className="italic"
+              style={{
+                fontFamily: "'Bitter', Georgia, serif",
+                color: PALETTE.slate,
+                opacity: 0.6,
+              }}
+            >
+              The End.
+            </p>
+            {onReturnToMenu && (
+              <button
+                onClick={onReturnToMenu}
+                className="cursor-pointer transition-all duration-[80ms]
+                  hover:translate-x-[-1px] hover:translate-y-[-1px]
+                  active:translate-x-[1px] active:translate-y-[1px]"
+                style={{
+                  fontFamily: "'Bitter', Georgia, serif",
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  color: PALETTE.cream,
+                  backgroundColor: PALETTE.terraCotta,
+                  border: `3px solid ${PALETTE.cream}`,
+                  borderRadius: "4px",
+                  padding: "10px 28px",
+                  boxShadow: "4px 4px 0 rgba(0,0,0,0.4)",
+                }}
+              >
+                Play Again
+              </button>
+            )}
+          </div>
         )}
       </div>
 
