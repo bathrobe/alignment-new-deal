@@ -1,0 +1,41 @@
+.choice-btn {
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 10px 14px;
+  color: #2B2D2F;
+  background: #E8DCC8;
+  border: 2px solid #2B2D2F;
+  box-shadow: 3px 3px 0 #2B2D2F;
+  transition: all 80ms ease;
+}
+
+.choice-arrow {
+  color: #C2704F;
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: color 80ms ease;
+}
+
+.choice-btn:hover {
+  background: #C2704F;
+  color: #E8DCC8;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #2B2D2F;
+}
+
+.choice-btn:hover .choice-arrow {
+  color: #E8DCC8;
+}
+
+.choice-btn:active {
+  background: #A85E3E;
+  color: #E8DCC8;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2B2D2F;
+}
+
+.choice-btn:active .choice-arrow {
+  color: #E8DCC8;
+}

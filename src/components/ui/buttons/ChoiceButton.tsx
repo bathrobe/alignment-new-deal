@@ -1,10 +1,10 @@
 /**
- * ChoiceButton - Story choice selection button
- * TODO: Customize styling for your project's look
+ * ChoiceButton — cream with arrow, fills terra cotta on hover
+ * Comic panel choice style
  */
 
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { PALETTE } from "../../../styles/palette";
+import "./choiceButton.css";
 
 interface ChoiceButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -13,15 +13,10 @@ interface ChoiceButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function ChoiceButton({ children, className = "", ...props }: ChoiceButtonProps) {
   return (
     <button
-      className={`px-3 py-2 rounded-lg text-left text-sm w-full cursor-pointer transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-1 ${className}`}
-      style={{
-        backgroundColor: PALETTE.background,
-        color: PALETTE.text,
-        border: `1px solid ${PALETTE.border}`,
-      }}
+      className={`choice-btn w-full text-left rounded-[3px] cursor-pointer ${className}`}
       {...props}
     >
-      <span className="mr-2">›</span>
+      <span className="choice-arrow">&#9656;</span>
       {children}
     </button>
   );

@@ -1,6 +1,7 @@
 import type { InkChoice } from "../hooks/useInkStory";
 import { GameLayout } from "../layouts/GameLayout";
 import { EmbossedLabel, MuteButton, NarrativeText, ChoiceButton } from "./ui";
+import { PALETTE } from "../styles/palette";
 
 interface GameViewProps {
   backgroundName?: string;
@@ -16,11 +17,6 @@ interface GameViewProps {
   onToggleMute: () => void;
 }
 
-/**
- * Main game layout using hardware-framed sidebar.
- * Desktop: scene left, sidebar right
- * Mobile: scene top, sidebar bottom
- */
 function GameView({
   backgroundName,
   textHistory,
@@ -34,10 +30,8 @@ function GameView({
   isMuted,
   onToggleMute,
 }: GameViewProps) {
-  // Click-to-continue when there's pending content and no choices
   const showClickToContinue = hasPendingContent && choices.length === 0;
 
-  // Build background image path (or undefined for special backgrounds)
   const backgroundImage = backgroundName
     ? `/backgrounds/${backgroundName}.jpg`
     : undefined;
@@ -56,19 +50,52 @@ function GameView({
         <NarrativeText paragraphs={textHistory} newBatchStartIndex={newBatchStartIndex} />
 
         {showClickToContinue && (
-          <div className="mt-4">
-            <ChoiceButton onClick={onContinue}>...</ChoiceButton>
+          <div className="mt-3">
+            <button
+              onClick={onContinue}
+              className="cursor-pointer transition-all duration-[80ms]
+                hover:translate-x-[-1px] hover:translate-y-[-1px]
+                active:translate-x-[1px] active:translate-y-[1px]"
+              style={{
+                fontFamily: "'Bitter', Georgia, serif",
+                fontSize: "13px",
+                color: PALETTE.slate,
+                padding: "6px 16px",
+                background: "transparent",
+                border: `2px solid ${PALETTE.slate}`,
+                borderRadius: "3px",
+                boxShadow: `2px 2px 0 rgba(43,45,47,0.2)`,
+              }}
+            >
+              . . .
+            </button>
           </div>
         )}
 
         {isEnded && choices.length === 0 && !hasPendingContent && (
-          <p className="mt-4 text-gray-400 italic font-baskerville">The End.</p>
+          <p
+            className="mt-4 italic"
+            style={{
+              fontFamily: "'Bitter', Georgia, serif",
+              color: PALETTE.slate,
+              opacity: 0.6,
+            }}
+          >
+            The End.
+          </p>
         )}
       </div>
 
       {/* Choice buttons */}
       {choices.length > 0 && (
-        <div className="mt-4 space-y-2">
+        <div
+          className="mt-5 space-y-2 rounded-[3px]"
+          style={{
+            padding: "14px",
+            background: `rgba(74,124,126, 0.08)`,
+            border: `2px solid ${PALETTE.charcoal}`,
+          }}
+        >
           {choices.map((choice) => (
             <ChoiceButton key={choice.index} onClick={() => onChoose(choice.index)}>
               {choice.text}

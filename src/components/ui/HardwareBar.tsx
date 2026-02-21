@@ -1,7 +1,6 @@
 /**
- * HardwareBar - Top strip with controls
- * Contains chapter label, title, mute button, etc.
- * TODO: Customize styling for your project's look
+ * HardwareBar — top header strip
+ * Slate background, bold chapter label in gold
  */
 
 import type { ReactNode } from "react";
@@ -16,10 +15,10 @@ interface HardwareBarProps {
 export function HardwareBar({ leftSlot, centerSlot, rightSlot }: HardwareBarProps) {
   return (
     <div
-      className="flex items-center justify-between px-3 py-2 rounded-t-lg"
+      className="flex items-center justify-between px-3.5 py-2 relative z-10"
       style={{
-        backgroundColor: PALETTE.secondary,
-        borderBottom: `1px solid ${PALETTE.border}`,
+        backgroundColor: PALETTE.slate,
+        borderBottom: `3px solid ${PALETTE.charcoal}`,
       }}
     >
       <div className="flex-shrink-0">{leftSlot}</div>
@@ -29,15 +28,16 @@ export function HardwareBar({ leftSlot, centerSlot, rightSlot }: HardwareBarProp
   );
 }
 
-// Label for chapter names, status indicators, etc.
 export function EmbossedLabel({ children }: { children: ReactNode }) {
   return (
     <span
-      className="text-xs px-2 py-1 rounded"
       style={{
-        backgroundColor: PALETTE.background,
-        color: PALETTE.textMuted,
-        border: `1px solid ${PALETTE.border}`,
+        fontFamily: "'Bitter', Georgia, serif",
+        fontSize: "12px",
+        fontWeight: 800,
+        color: PALETTE.gold,
+        textTransform: "uppercase" as const,
+        letterSpacing: "3px",
       }}
     >
       {children}

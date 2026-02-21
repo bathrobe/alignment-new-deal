@@ -30,6 +30,7 @@ Check your scene checklist for the next unchecked scene.
 2. **Current story** (`src/story/*.ink`) — Voice, tone, existing flow
 3. **Existing backgrounds** — Visual language established
 4. **DEV_NOTES.md** — Ink patterns and gotchas
+5. **Reference README** (`notes/references/README.md`) — Available style & character refs
 
 ### 3. Write Ink (Collaborative Loop)
 
@@ -65,26 +66,44 @@ Check your scene checklist for the next unchecked scene.
 
 Use the **background-generator** skill:
 
-#### 4a: Craft 3 Prompts
-Based on approved Ink, write 3 variations.
+#### 4a: Select References
+
+Read `notes/references/README.md`. Pick 2 style refs matching the scene mood:
+
+| Scene mood | Style refs |
+|-----------|------------|
+| Daytime exterior | `style_ref_01` + `style_ref_03` |
+| Interior | `style_ref_02` + `style_ref_01` |
+| Night / quiet | `style_ref_04` + `style_ref_01` |
+| Hopeful / warm | `style_ref_03` + `style_ref_01` |
+
+If the scene includes a known character, also attach their character ref
+from `notes/references/characters/` (when those exist).
+
+#### 4b: Craft 3 Prompts
+Based on approved Ink, write 3 prompt variations.
 
 **STOP. Discuss prompts.**
 
-#### 4b: Generate All 3
+#### 4c: Generate All 3
+
+All 3 get the same style refs. Generate to inbox:
+
 ```
 public/inbox/{scene_name}_v1.jpg
 public/inbox/{scene_name}_v2.jpg
 public/inbox/{scene_name}_v3.jpg
 ```
 
-#### 4c: Present Options
-View all 3, note any issues.
+#### 4d: Present Options
+View all 3, note any issues with style lock compliance.
 
 **STOP. Pick winner or request more.**
 
-#### 4d: Finalize
+#### 4e: Finalize
 - Move winner to `public/backgrounds/{scene_name}.jpg`
 - Archive rejects to `public/inbox/archive/`
+- If winner is especially good, suggest adding to `notes/references/style/`
 
 ### 5. Compile & Verify
 
@@ -103,3 +122,4 @@ Update your scene checklist.
 - **STOP means STOP.** Don't proceed until explicitly approved.
 - **Keep it tight.** 2-3 lines per beat max.
 - **3 variations minimum** for images.
+- **Always attach style refs.** Never generate without them.

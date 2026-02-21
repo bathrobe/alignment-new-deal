@@ -1,6 +1,6 @@
 /**
- * SecondaryButton - Secondary action button
- * TODO: Customize styling for your project's look
+ * SecondaryButton — cream, bold outline, hard shadow
+ * Same shadow system as primary
  */
 
 import type { ButtonHTMLAttributes, ReactNode } from "react";
@@ -10,14 +10,22 @@ interface SecondaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export function SecondaryButton({ children, className = "", ...props }: SecondaryButtonProps) {
+export function SecondaryButton({ children, className = "", style, ...props }: SecondaryButtonProps) {
   return (
     <button
-      className={`px-6 py-3 rounded-lg font-medium transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 ${className}`}
+      className={`px-5 py-2.5 rounded cursor-pointer transition-all duration-[80ms] ease-in-out
+        hover:translate-x-[-1px] hover:translate-y-[-1px]
+        active:translate-x-[2px] active:translate-y-[2px]
+        ${className}`}
       style={{
-        backgroundColor: PALETTE.background,
-        color: PALETTE.text,
-        border: `1px solid ${PALETTE.border}`,
+        fontFamily: "'Bitter', Georgia, serif",
+        fontWeight: 600,
+        fontSize: "14px",
+        color: PALETTE.charcoal,
+        backgroundColor: PALETTE.cream,
+        border: `3px solid ${PALETTE.charcoal}`,
+        boxShadow: `4px 4px 0 ${PALETTE.charcoal}`,
+        ...style,
       }}
       {...props}
     >

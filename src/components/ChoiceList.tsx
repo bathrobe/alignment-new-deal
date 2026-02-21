@@ -7,25 +7,20 @@ interface ChoiceListProps {
   onChoose: (index: number) => void;
 }
 
-/**
- * Renders choice buttons for the player.
- * TODO: Customize styling for your project
- */
 function ChoiceList({ choices, onChoose }: ChoiceListProps) {
-  if (choices.length === 0) {
-    return null;
-  }
+  if (choices.length === 0) return null;
 
   return (
     <div
-      className="p-3 rounded-lg space-y-2"
-      style={{ backgroundColor: PALETTE.background }}
+      className="space-y-2 rounded-[3px]"
+      style={{
+        padding: "14px",
+        background: `rgba(74,124,126, 0.08)`,
+        border: `2px solid ${PALETTE.charcoal}`,
+      }}
     >
       {choices.map((choice) => (
-        <ChoiceButton
-          key={choice.index}
-          onClick={() => onChoose(choice.index)}
-        >
+        <ChoiceButton key={choice.index} onClick={() => onChoose(choice.index)}>
           {choice.text}
         </ChoiceButton>
       ))}

@@ -1,10 +1,9 @@
 /**
- * Viewport - Content area / text panel
- * TODO: Customize styling for your project's look
+ * Viewport — content/reading area inside the frame
+ * Cream paper feel, no border (frame provides the border)
  */
 
 import type { ReactNode } from "react";
-import { PALETTE } from "../../styles/palette";
 
 interface ViewportProps {
   children: ReactNode;
@@ -13,13 +12,7 @@ interface ViewportProps {
 
 export function Viewport({ children, className = "" }: ViewportProps) {
   return (
-    <div
-      className={`rounded-lg ${className}`}
-      style={{
-        backgroundColor: PALETTE.surface,
-        border: `1px solid ${PALETTE.border}`,
-      }}
-    >
+    <div className={`relative ${className}`} style={{ padding: "20px 18px" }}>
       {children}
     </div>
   );

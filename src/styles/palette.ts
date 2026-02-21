@@ -1,18 +1,21 @@
 /**
- * Color palette - customize for your project
- * TODO: Define your visual identity colors here
+ * Color palette — WPA screenprint / graphic novel
+ * Flat colors, bold outlines, hard shadows
  */
 
 export const PALETTE = {
-  // Core colors - replace with your project's palette
-  primary: "#3B82F6",      // Blue - primary actions
-  secondary: "#6B7280",    // Gray - secondary elements
-  background: "#F9FAFB",   // Light gray - backgrounds
-  surface: "#FFFFFF",      // White - cards/panels
-  text: "#1F2937",         // Dark gray - body text
-  textMuted: "#6B7280",    // Medium gray - secondary text
-  border: "#E5E7EB",       // Light gray - borders
-  accent: "#8B5CF6",       // Purple - accents (optional)
+  terraCotta: "#C2704F",     // Primary actions
+  terraCottaLight: "#D07E5A",
+  terraCottaDark: "#A85E3E",
+  cream: "#E8DCC8",          // Paper/viewport/secondary
+  creamLight: "#F0E8D6",
+  creamDark: "#D8CDB8",
+  slate: "#4D5666",          // Frame/header bar
+  gold: "#C4A24D",           // Labels/accents
+  teal: "#4A7C7E",           // Subtle tints
+  charcoal: "#2B2D2F",       // Outlines, text, shadows
+  disabledBg: "#A09888",
+  disabledText: "#C0B8A8",
 } as const;
 
 export type PaletteColor = keyof typeof PALETTE;

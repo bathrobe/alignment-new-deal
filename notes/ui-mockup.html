@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alignment New Deal — Sidebar Design v2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    color: #2B2D2F;
+    padding: 40px;
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: 'Bitter', serif;
+    color: #E8DCC8;
+    font-size: 24px;
+    width: 100%;
+    margin-bottom: -20px;
+  }
+
+  h2 {
+    font-family: 'Bitter', serif;
+    color: #C4A24D;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .label {
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .spacer { height: 24px; }
+
+  /* ═══════════════════════════════════════════
+     COMIC PANEL SIDEBAR
+     Thick black borders, flat fills, halftone
+     texture, speech-bubble viewport
+     ═══════════════════════════════════════════ */
+
+  .sidebar-mockup {
+    width: 330px;
+    background: #E8DCC8;
+    border: 4px solid #2B2D2F;
+    border-radius: 2px;
+    box-shadow: 6px 6px 0 #2B2D2F;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* halftone overlay on the cream background */
+  .sidebar-mockup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #2B2D2F 0.6px, transparent 0.6px);
+    background-size: 6px 6px;
+    opacity: 0.035;
+    pointer-events: none;
+  }
+
+  /* ═══════════════════════════════════════════
+     HEADER BAR — bold banner strip
+     ═══════════════════════════════════════════ */
+  .header-bar {
+    background: #4D5666;
+    border-bottom: 3px solid #2B2D2F;
+    padding: 8px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .chapter-label {
+    font-family: 'Bitter', serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: #C4A24D;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .mute-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #2B2D2F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 100ms;
+    font-size: 12px;
+  }
+
+  .mute-btn.on {
+    background: #C2704F;
+    color: #E8DCC8;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  }
+
+  .mute-btn.off {
+    background: #E8DCC8;
+    color: #999;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+  }
+
+  /* ═══════════════════════════════════════════
+     VIEWPORT — the reading area
+     Feels like a panel interior, not an inset
+     device screen
+     ═══════════════════════════════════════════ */
+  .viewport {
+    padding: 20px 18px;
+    position: relative;
+    min-height: 480px;
+  }
+
+  /* ═══════════════════════════════════════════
+     NARRATIVE TEXT
+     ═══════════════════════════════════════════ */
+  .narrative-text {
+    font-family: 'Bitter', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #2B2D2F;
+    margin-bottom: 14px;
+  }
+
+  .narrative-text.faded {
+    opacity: 0.35;
+  }
+
+  /* ═══════════════════════════════════════════
+     CHOICE CONTAINER — ink wash background
+     ═══════════════════════════════════════════ */
+  .choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 14px;
+    background: rgba(74,124,126, 0.08);
+    border: 2px solid #2B2D2F;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  /* ═══════════════════════════════════════════
+     BUTTONS — bold outlines, flat color, comic
+     ═══════════════════════════════════════════ */
+
+  /* --- PRIMARY (Terra Cotta, bold) --- */
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #E8DCC8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 80ms ease;
+    position: relative;
+
+    background: #C2704F;
+    border: 3px solid #2B2D2F;
+    box-shadow: 4px 4px 0 #2B2D2F;
+  }
+
+  .btn-primary.hover {
+    background: #D07E5A;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 #2B2D2F;
+  }
+
+  .btn-primary.active {
+    background: #A85E3E;
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #2B2D2F;
+  }
+
+  .btn-primary.disabled {
+    background: #A09888;
+    color: #C0B8A8;
+    cursor: default;
+    box-shadow: 2px 2px 0 rgba(43,45,47,0.3);
+    border-color: rgba(43,45,47,0.4);
+  }
+
+  /* --- SECONDARY (Cream outline) --- */
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-family: 'Bitter', serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2B2D2F;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 80ms ease;
+
+    background: #E8DCC8;
+    border: 3px solid #2B2D2F;
+    box-shadow: 4px 4px 0 #2B2D2F;
+  }
+
+  .btn-secondary.hover {
+    background: #F0E8D6;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 #2B2D2F;
+  }
+
+  .btn-secondary.active {
+    background: #D8CDB8;
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #2B2D2F;
+  }
+
+  /* --- CHOICE (flat, arrow, slides on hover) --- */
+  .btn-choice {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    font-family: 'Bitter', serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #2B2D2F;
+    text-align: left;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 80ms ease;
+
+    background: #E8DCC8;
+    border: 2px solid #2B2D2F;
+    box-shadow: 3px 3px 0 #2B2D2F;
+  }
+
+  .btn-choice .arrow {
+    color: #C2704F;
+    margin-right: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 80ms;
+  }
+
+  .btn-choice.hover {
+    background: #C2704F;
+    color: #E8DCC8;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 #2B2D2F;
+  }
+
+  .btn-choice.hover .arrow {
+    color: #E8DCC8;
+  }
+
+  .btn-choice.active {
+    background: #A85E3E;
+    color: #E8DCC8;
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #2B2D2F;
+  }
+
+  .btn-choice.active .arrow { color: #E8DCC8; }
+
+  /* ═══════════════════════════════════════════
+     CONTINUE PROMPT — minimal tap target
+     ═══════════════════════════════════════════ */
+  .continue-prompt {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 16px;
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+    color: #4D5666;
+    cursor: pointer;
+    transition: all 80ms;
+    background: transparent;
+    border: 2px solid #4D5666;
+    border-radius: 3px;
+    box-shadow: 2px 2px 0 rgba(43,45,47,0.2);
+  }
+
+  .continue-prompt.hover {
+    color: #C2704F;
+    border-color: #C2704F;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 rgba(43,45,47,0.2);
+  }
+
+  /* ═══════════════════════════════════════════
+     LAYOUT HELPERS
+     ═══════════════════════════════════════════ */
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .state-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .full-mock-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Alignment New Deal — UI v2 (Comic Panel)</h1>
+
+<!-- ═══════════════════════════════════════════
+     COLUMN 1: Full sidebar mocks
+     ═══════════════════════════════════════════ -->
+<div class="full-mock-container">
+  <div>
+    <h2>In-Game — Choices</h2>
+    <div class="sidebar-mockup">
+      <div class="header-bar">
+        <div class="chapter-label">Act I</div>
+        <div class="mute-btn on">&#9835;</div>
+      </div>
+      <div class="viewport">
+        <p class="narrative-text faded">You wake in a room you don't recognise.</p>
+        <p class="narrative-text faded">Fluorescent light. White walls. A faint hum.</p>
+        <p class="narrative-text">The door is open. Outside, the city is gorgeous and strange — amber light on parametric glass, a mural the size of a building, seed-shaped drones drifting like pollen.</p>
+        <div class="choice-list">
+          <button class="btn-choice"><span class="arrow">&#9656;</span> Walk toward the park</button>
+          <button class="btn-choice"><span class="arrow">&#9656;</span> Head to the Learning Center</button>
+          <button class="btn-choice"><span class="arrow">&#9656;</span> Just stand here a while</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>In-Game — Continue</h2>
+    <div class="sidebar-mockup">
+      <div class="header-bar">
+        <div class="chapter-label">Act I</div>
+        <div class="mute-btn on">&#9835;</div>
+      </div>
+      <div class="viewport">
+        <p class="narrative-text faded">You chose the park. The path is new concrete, poured smooth, already cracking where something green pushes through.</p>
+        <p class="narrative-text">A crew in high-vis vests plants saplings along the boulevard. One of them waves. The drone above pivots, scanning the row they just finished.</p>
+        <button class="continue-prompt">. . .</button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Title Screen</h2>
+    <div class="sidebar-mockup">
+      <div class="header-bar">
+        <div class="chapter-label" style="visibility:hidden">—</div>
+        <div class="mute-btn off">&#9835;</div>
+      </div>
+      <div class="viewport" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;">
+        <div style="font-family:'Bitter',serif;font-size:26px;font-weight:800;color:#2B2D2F;line-height:1.2;letter-spacing:-0.5px;">The Alignment<br>New Deal</div>
+        <div style="font-family:'Bitter',serif;font-size:12px;color:#4D5666;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;">An Interactive Story</div>
+        <button class="btn-primary" style="width:200px;">New Game</button>
+        <button class="btn-secondary" style="width:200px;">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     COLUMN 2: Button states
+     ═══════════════════════════════════════════ -->
+<div class="section" style="width:280px;">
+  <h2>Primary Button</h2>
+  <p class="label">Terra Cotta — bold outline + hard shadow</p>
+
+  <div class="state-row">
+    <div class="label">Resting</div>
+    <button class="btn-primary">New Game</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Hover — lifts up+left, shadow grows</div>
+    <button class="btn-primary hover">New Game</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Active — presses into shadow</div>
+    <button class="btn-primary active">New Game</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Disabled</div>
+    <button class="btn-primary disabled">New Game</button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h2>Secondary Button</h2>
+  <p class="label">Cream — same shadow system</p>
+
+  <div class="state-row">
+    <div class="label">Resting</div>
+    <button class="btn-secondary">Continue</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Hover</div>
+    <button class="btn-secondary hover">Continue</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Active</div>
+    <button class="btn-secondary active">Continue</button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h2>Choice Button</h2>
+  <p class="label">Fills terra cotta on hover</p>
+
+  <div class="state-row">
+    <div class="label">Resting</div>
+    <button class="btn-choice"><span class="arrow">&#9656;</span> Walk toward the park</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Hover — fills, lifts</div>
+    <button class="btn-choice hover"><span class="arrow">&#9656;</span> Walk toward the park</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Active — presses</div>
+    <button class="btn-choice active"><span class="arrow">&#9656;</span> Walk toward the park</button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h2>Continue Prompt</h2>
+  <p class="label">Minimal — ghost border</p>
+
+  <div class="state-row">
+    <div class="label">Resting</div>
+    <button class="continue-prompt">. . .</button>
+  </div>
+  <div class="state-row">
+    <div class="label">Hover — terra cotta</div>
+    <button class="continue-prompt hover">. . .</button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h2>Mute Toggle</h2>
+  <div style="display:flex;gap:20px;">
+    <div class="state-row" style="align-items:center;">
+      <div class="label">On</div>
+      <div class="mute-btn on">&#9835;</div>
+    </div>
+    <div class="state-row" style="align-items:center;">
+      <div class="label">Off</div>
+      <div class="mute-btn off">&#9835;</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     COLUMN 3: Design system notes
+     ═══════════════════════════════════════════ -->
+<div class="section" style="width:260px;">
+  <h2>Design Language</h2>
+
+  <p class="label">Core idea</p>
+  <div style="color:#aaa;font-size:13px;line-height:1.7;margin-bottom:16px;">
+    Everything is <strong style="color:#E8DCC8;">flat color + bold black outline + hard shadow</strong>. Like a comic panel or screenprint. No gradients, no bevels, no glass effects. Depth comes from the offset shadow only.
+  </div>
+
+  <p class="label">Shadow system</p>
+  <div style="color:#aaa;font-size:11px;line-height:1.8;font-family:monospace;margin-bottom:16px;">
+    /* Resting */<br>
+    box-shadow: 4px 4px 0 #2B2D2F;<br><br>
+    /* Hover (lifts) */<br>
+    transform: translate(-1px, -1px);<br>
+    box-shadow: 5px 5px 0 #2B2D2F;<br><br>
+    /* Active (presses into shadow) */<br>
+    transform: translate(2px, 2px);<br>
+    box-shadow: 1px 1px 0 #2B2D2F;<br><br>
+    transition: all 80ms ease;
+  </div>
+
+  <p class="label">What's different from merge-lane</p>
+  <div style="color:#aaa;font-size:12px;line-height:1.7;margin-bottom:16px;">
+    <span style="color:#C2704F;">&#10005;</span> No gradients<br>
+    <span style="color:#C2704F;">&#10005;</span> No beveled borders<br>
+    <span style="color:#C2704F;">&#10005;</span> No inset shadows<br>
+    <span style="color:#C2704F;">&#10005;</span> No hardware rivets<br>
+    <span style="color:#4A7C7E;">&#10003;</span> Flat fills + bold outlines<br>
+    <span style="color:#4A7C7E;">&#10003;</span> Hard offset shadows (comic drop shadow)<br>
+    <span style="color:#4A7C7E;">&#10003;</span> Halftone dot texture<br>
+    <span style="color:#4A7C7E;">&#10003;</span> Choices fill on hover (not slide)
+  </div>
+
+  <p class="label">Palette</p>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#C2704F;border:2px solid #2B2D2F;border-radius:2px;"></div>
+      <span style="color:#aaa;font-size:12px;">Terra Cotta — primary action</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#E8DCC8;border:2px solid #2B2D2F;border-radius:2px;"></div>
+      <span style="color:#aaa;font-size:12px;">Warm Cream — paper/secondary</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#4D5666;border:2px solid #2B2D2F;border-radius:2px;"></div>
+      <span style="color:#aaa;font-size:12px;">Cool Slate — header bar</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#C4A24D;border:2px solid #2B2D2F;border-radius:2px;"></div>
+      <span style="color:#aaa;font-size:12px;">Muted Gold — labels/accents</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#2B2D2F;border:2px solid #555;border-radius:2px;"></div>
+      <span style="color:#aaa;font-size:12px;">Charcoal — outlines/text</span>
+    </div>
+  </div>
+
+  <p class="label">Typography</p>
+  <div style="color:#aaa;font-size:12px;line-height:1.8;">
+    <strong style="font-family:'Bitter',serif;color:#E8DCC8;font-size:18px;">Bitter</strong><br>
+    <span style="font-family:'Bitter',serif;color:#ccc;">Narrative + buttons. Slab serif = poster energy.</span><br><br>
+    <strong style="font-family:'Inter',sans-serif;color:#E8DCC8;font-size:16px;">Inter</strong><br>
+    <span style="font-family:'Inter',sans-serif;color:#ccc;">Labels only. Small, functional.</span>
+  </div>
+</div>
+
+</body>
+</html>

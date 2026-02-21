@@ -1,8 +1,7 @@
 /**
- * GameLayout - Scene + Sidebar composition
- * Desktop: flex row (scene left, sidebar right)
- * Mobile (<1024px): flex column (scene top, sidebar bottom)
- * TODO: Customize styling for your project
+ * GameLayout — scene + sidebar composition
+ * Desktop: scene left, sidebar right
+ * Mobile: scene top, sidebar bottom
  */
 
 import type { ReactNode } from "react";
@@ -31,7 +30,7 @@ export function GameLayout({
         className="flex-1 bg-cover bg-center"
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
-          backgroundColor: PALETTE.secondary,
+          backgroundColor: PALETTE.slate,
           minHeight: "40vh",
         }}
       />
@@ -45,7 +44,7 @@ export function GameLayout({
             rightSlot={hardwareBarRight}
           />
           <Viewport className="flex-1">
-            <div className="p-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+            <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
               {children}
             </div>
           </Viewport>

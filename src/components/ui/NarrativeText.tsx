@@ -1,6 +1,6 @@
 /**
- * NarrativeText - Story text display
- * Supports color tags from Ink
+ * NarrativeText — story text display
+ * Bitter serif, faded for old text
  */
 
 import { PALETTE } from "../../styles/palette";
@@ -13,7 +13,7 @@ interface NarrativeTextProps {
 
 export function NarrativeText({ paragraphs, newBatchStartIndex = 0 }: NarrativeTextProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-3.5">
       {paragraphs.map((rawText, index) => {
         const { text, color } = parseInkTags(rawText);
         const isOld = index < newBatchStartIndex;
@@ -21,10 +21,12 @@ export function NarrativeText({ paragraphs, newBatchStartIndex = 0 }: NarrativeT
         return (
           <p
             key={index}
-            className="text-base leading-relaxed"
             style={{
-              color: color ?? PALETTE.text,
-              opacity: isOld ? 0.5 : 1,
+              fontFamily: "'Bitter', Georgia, serif",
+              fontSize: "15px",
+              lineHeight: 1.7,
+              color: color ?? PALETTE.charcoal,
+              opacity: isOld ? 0.35 : 1,
             }}
           >
             {text}

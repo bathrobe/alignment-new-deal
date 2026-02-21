@@ -3,9 +3,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Late 90s fonts */
-  --font-baskerville: 'Libre Baskerville', Georgia, serif;
-  --font-nunito: 'Nunito', 'VAG Rounded', sans-serif;
+  /* WPA / graphic novel fonts */
+  --font-bitter: 'Bitter', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

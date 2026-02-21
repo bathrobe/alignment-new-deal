@@ -1,6 +1,6 @@
 /**
- * TitleScreen - Welcome screen
- * TODO: Customize for your project's look and branding
+ * TitleScreen — welcome screen
+ * Comic panel frame centered on page
  */
 
 import { Frame, Viewport, HardwareBar } from "./ui";
@@ -17,56 +17,53 @@ function TitleScreen({ onNewGame, onContinue, hasSave }: TitleScreenProps) {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ backgroundColor: PALETTE.background }}
+      style={{ backgroundColor: PALETTE.slate }}
     >
       <Frame>
-        <HardwareBar
-          centerSlot={
-            <span className="text-xs" style={{ color: PALETTE.textMuted }}>
-              Visual Novel Template
-            </span>
-          }
-        />
+        <HardwareBar />
 
         <Viewport>
-          <div className="p-8 text-center">
-            {/* Title - customize this */}
+          <div className="py-8 px-4 text-center">
             <h1
-              className="text-3xl font-bold mb-2"
-              style={{ color: PALETTE.text }}
+              style={{
+                fontFamily: "'Bitter', Georgia, serif",
+                fontSize: "26px",
+                fontWeight: 800,
+                color: PALETTE.charcoal,
+                lineHeight: 1.2,
+                letterSpacing: "-0.5px",
+                marginBottom: "8px",
+              }}
             >
-              [Your Title Here]
+              The Alignment<br />New Deal
             </h1>
 
             <p
-              className="text-sm mb-8"
-              style={{ color: PALETTE.textMuted }}
+              style={{
+                fontFamily: "'Bitter', Georgia, serif",
+                fontSize: "12px",
+                color: PALETTE.slate,
+                textTransform: "uppercase" as const,
+                letterSpacing: "1px",
+                marginBottom: "28px",
+              }}
             >
-              A visual novel
+              An Interactive Story
             </p>
 
-            {/* Buttons */}
             <div className="flex flex-col gap-3 items-center">
-              <PrimaryButton onClick={onNewGame}>
+              <PrimaryButton onClick={onNewGame} style={{ width: "200px" }}>
                 New Game
               </PrimaryButton>
 
               {hasSave && (
-                <SecondaryButton onClick={onContinue}>
+                <SecondaryButton onClick={onContinue} style={{ width: "200px" }}>
                   Continue
                 </SecondaryButton>
               )}
             </div>
           </div>
         </Viewport>
-
-        <HardwareBar
-          centerSlot={
-            <span className="text-xs" style={{ color: PALETTE.textMuted }}>
-              v0.1
-            </span>
-          }
-        />
       </Frame>
     </div>
   );
