@@ -1,0 +1,3 @@
+name: scene-author
+description: Step through arc.md scenes procedurally — write Ink dialogue, generate backgrounds, get feedback at each step.
+path: .claude/skills/scene-author

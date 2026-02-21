@@ -1,0 +1,3 @@
+name: background-generator
+description: Generate background images with consistent style. Wraps prompts with your project's Style Lock prefix/suffix, generates at 4:3 2K, and saves to public/backgrounds/.
+path: .claude/skills/background-generator
