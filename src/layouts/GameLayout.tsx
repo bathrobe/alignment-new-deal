@@ -4,7 +4,7 @@
  * Mobile: scene top, sidebar bottom
  */
 
-import type { ReactNode } from "react";
+import { useRef, useEffect, type ReactNode } from "react";
 import { Frame, Viewport, HardwareBar } from "../components/ui";
 import { PALETTE } from "../styles/palette";
 
@@ -23,6 +23,12 @@ export function GameLayout({
   hardwareBarRight,
   children,
 }: GameLayoutProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0, 0);
+  }, [backgroundImage]);
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Scene area */}
@@ -44,7 +50,7 @@ export function GameLayout({
             rightSlot={hardwareBarRight}
           />
           <Viewport className="flex-1">
-            <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div ref={scrollRef} className="max-h-[calc(100vh-4rem)] overflow-y-auto">
               {children}
             </div>
           </Viewport>
